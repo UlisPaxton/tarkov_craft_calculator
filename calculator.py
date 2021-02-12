@@ -27,10 +27,6 @@ Craft.craft('Канистра Экспедиционная топливная (6
 Craft.craft('Граната "хаттабка" на базе ВОГ-25')
 Craft.craft('Водный фильтр')
 
-"""for index, value in enumerate(Craft.craft_table):
-    print(index, value['name'])
-"""
-
 
 
 

@@ -3,7 +3,7 @@ import browser
 
 def repeat(item_name, count):
     """мультиплексор, возвращает словарь строк item_name, содержащий count элементов"""
-    generated_list = [item_name for _ in range(0, count)]
+    generated_list = [item_name] * count
     return generated_list
 
 
@@ -25,7 +25,10 @@ class Craft:
     """словарь name_matching_table нужен чтобы сопоставить кастомное наименование предмета с наименованием из 
     JSON-ответа tarkov-market. Что бы понять проблему найдите предмет 'Печатная плата' и вы увидите в 
     поиске 2 результата - Печатную плату и военную микросхему, несмотря на такой ляп поиска, бэк-енд tarkov-market
-    возвращает для каждого из этих предметов разные англоязычные имена API."""
+    возвращает для каждого из этих предметов разные англоязычные имена API.
+    В принципе можно задать любое имя в качестве ключа словаря name_matching_table, это очень хорошо подходит
+    для описания крафта печатных плат из газоанализатора и отвёртки и из DVD и плоской отвёртки."""
+
     @classmethod
     def get(cls, item_name):
         try:
@@ -75,7 +78,7 @@ class Craft:
         try:
 
             item_market_name = cls.name_matching_table[item['name']]
-        except ValueError:
+        except KeyError:
             item_market_name = item['name']
 
         item_sale_price = cls.browser.get_price(item_market_name)
@@ -85,14 +88,10 @@ class Craft:
         print('---------------------------------------------------------')
         for resource in item['craft_from']:
             resource_price = cls.browser.get_price(cls.get(resource))
-            print(resource, resource_price)
+
             total_price += resource_price
 
         print('Крафтим', item['name'])
         print('Цена продажи:', result_sale_price, 'Цена ресурсов:', total_price)
         print('Профит:', result_sale_price - total_price)
         print('Профит в час', (result_sale_price - total_price)/item['craft_duration'] * 60)
-
-
-if __name__ == '__main__':
-    Craft.add('Магазин 6Л31', 'Магазин 6Л31', [*repeat('Магазин 6Л23', 4), 'Липкая лента KEKТЕЙП'], 1, 80)

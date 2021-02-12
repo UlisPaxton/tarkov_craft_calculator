@@ -31,13 +31,17 @@ class CustomBrowser:
         else:
             response = self.session.get(url)
             json_data = json.loads(response.text)
-            print(len(json_data))
+            #print(len(json_data))
+            #print(json_data)
 
             try:
                 price = int(json_data['items'][0]['avgDayPrice'])
                 self.cache.update({item_name: price})
                 return price
             except KeyError:
+                print('Не удалось получить цену, не найден элемент', item_name)
+                exit()
+            except IndexError:
                 print('Не удалось получить цену, не найден элемент', item_name)
                 exit()
 

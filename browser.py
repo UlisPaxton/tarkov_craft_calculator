@@ -7,7 +7,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 class CustomBrowser:
-    def __init__(self, proxy=None):
+    def __init__(self, proxy: dict = None):
         if proxy is None:
             proxy = {}
         self.session = requests.Session()
@@ -22,7 +22,7 @@ class CustomBrowser:
                                 }
         self.cache = dict()
 
-    def get_price(self, item_name):
+    def get_price(self, item_name: str):
         url = f'https://tarkov-market.com/api/items?lang=en&search={item_name}\
                 &tag=&sort=change24&sort_direction=desc&skip=0&limit=20'
 

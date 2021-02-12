@@ -1,7 +1,7 @@
 import browser
 
 
-def repeat(item_name, count):
+def repeat(item_name: str, count: int):
     """мультиплексор, возвращает словарь строк item_name, содержащий count элементов"""
     generated_list = [item_name] * count
     return generated_list
@@ -30,22 +30,23 @@ class Craft:
     для описания крафта печатных плат из газоанализатора и отвёртки и из DVD и плоской отвёртки."""
 
     @classmethod
-    def get(cls, item_name):
+    def get(cls, item_name: str):
         try:
             return cls.name_matching_table[item_name]
         except KeyError:
             return item_name
 
     @classmethod
-    def get_craft_element(cls, item_name):
+    def get_craft_element(cls, item_name: str):
         for element in cls.craft_table:
             if element['name'] == item_name:
                 return element
+
         print(item_name, "нет в таблице крафта.")
         exit()
 
     @classmethod
-    def add(cls, name, market_name, craft_from, result_count, craft_duration):
+    def add(cls, name: str, market_name: str, craft_from: list, result_count: int, craft_duration: int):
 
         """Добавление структуры в таблицу крафта
         пример вызова
@@ -72,7 +73,7 @@ class Craft:
         cls.name_matching_table.update({name: market_name})
 
     @classmethod
-    def craft(cls, item_name):
+    def craft(cls, item_name: str):
         item = cls.get_craft_element(item_name)
 
         try:

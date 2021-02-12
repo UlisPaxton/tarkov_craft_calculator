@@ -31,8 +31,6 @@ class CustomBrowser:
         else:
             response = self.session.get(url)
             json_data = json.loads(response.text)
-            #print(len(json_data))
-            #print(json_data)
 
             try:
                 price = int(json_data['items'][0]['avgDayPrice'])

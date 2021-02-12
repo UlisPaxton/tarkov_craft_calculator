@@ -60,11 +60,10 @@ class Craft:
 
     @classmethod
     def craft(cls, item_name):
-        #print(item_name, cls.craft_table.keys())
         item = cls.get_craft_element(item_name)
 
         try:
-            #print(item)
+
             item_market_name = cls.name_matching_table[item['name']]
         except ValueError:
             item_market_name = item['name']
@@ -87,6 +86,3 @@ class Craft:
 
 if __name__ == '__main__':
     Craft.add('Магазин 6Л31', 'Магазин 6Л31', [*repeat('Магазин 6Л23', 4), 'Липкая лента KEKТЕЙП'], 1, 80)
-
-    #for item in Craft.craft_table:
-    #    print(item)

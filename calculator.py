@@ -1,4 +1,4 @@
-
+from sys import exit
 from craft_table import Craft, repeat
 
 

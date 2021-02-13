@@ -1,4 +1,6 @@
+from sys import exit
 import browser
+
 
 
 def repeat(item_name: str, count: int):

@@ -18,7 +18,7 @@ Craft.add('Отбеливатель', 'Ox bleach', ['Кусок мыла', 'Ср
 Craft.add('Воздушный фильтр для противогаза', 'Air filter for gas mask', ['Противогаз ГП-5'], 1, 1)
 Craft.add('Арамидная ткань', 'Aramid fiber cloth', ['Бронежилет PACA Soft Armor'], 2, 32)
 Craft.add('Алюминиевая шина для переломов', 'Immobilizing splint (alu)', ['Бронежилет MF-UNTAR (0/45)',
-                                                                          'Ножницы длф резки металла'], 2, 51)
+                                                                          'Ножницы для резки металла'], 2, 51)
 Craft.add('Ткань рипстоп', 'Ripstop cloth', [*repeat('Жилет дикого', 3)], 2, 35)
 Craft.add('Магазин 6Л31', 'Магазин 6Л31', [*repeat('Магазин 6Л23', 4), 'Липкая лента KEKТЕЙП'], 1, 80)
 
@@ -75,7 +75,7 @@ while True:
     except ValueError:
         print('Числовой номер, пожалуйста.')
 
-    if input("Ещё?(Y/N)") == 'N':
+    if input("Ещё?(Y/N)").upper() == 'N':
         exit()
 
 

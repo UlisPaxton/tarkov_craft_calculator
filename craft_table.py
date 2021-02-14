@@ -89,18 +89,25 @@ class Craft:
         total_price = 0
 
         print('---------------------------------------------------------')
+        resource_prices_dict = {}
         for resource in item['craft_from']:
             resource_price = cls.browser.get_price(cls.get(resource))
+            resource_prices_dict.update({resource: resource_price})
 
             total_price += resource_price
 
         print('Крафтим', item['name'])
         print('Цена продажи:', result_sale_price, 'Цена ресурсов:', total_price)
+        print('При цене ингредиентов:')
+        for resource in resource_prices_dict.keys():
+            print('    ', resource, ':', resource_prices_dict[resource])
         print('Профит:', result_sale_price - total_price)
         print('Профит в час', (result_sale_price - total_price)/item['craft_duration'] * 60)
+        print('Время крафта:', item['craft_duration'] / 60, 'часов.')
 
 
 # ----------------------- наполнение таблицы крафта
+# ----------------------- санузел
 Craft.add('Водный фильтр', 'Water filter', [*repeat('Воздушный фильтр для противогаза', 4),
                                             'Ножницы для резки металла', 'Бумага для принтера'], 1, 571)
 Craft.add('Бронежилет модуль 3М', 'Module-3M bodyarmor (40/40)', [*repeat('Арамидная ткань', 2),
@@ -140,6 +147,11 @@ Craft.add('Липкая лента KEKТЕЙП', 'KEKTAPE duct tape', [*repeat('
                                                         'Стеклоочиститель'], 1, 77)
 Craft.add('Гофрированный шланг', 'Corrugated hose', [*repeat('Пучок проводов', 3), *repeat('Изолента', 3),
                                                      'Силиконовая трубка'], 2, 194)
-
+# ----------------------- верстак
 Craft.add('Граната "хаттабка" на базе ВОГ-25', 'VOG-25 Khattabka grenade',
           [*repeat('Запал УЗРГМ для гранат', 5), *repeat('40 мм ВОГ-25', 5)], 8, 64)
+
+# ----------------------- пищеблок
+
+Craft.add('Пачка сахара', 'Pack of sugar', [*repeat('Шоколад Алёнка', 2)], 1, 80)
+Craft.add('Чистая Энергия', 'Max energy',['ТарКола', 'Банка кофе Majaica', 'Бутылка воды 0.6'], 4, 204)

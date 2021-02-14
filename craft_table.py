@@ -2,7 +2,6 @@ from sys import exit
 import browser
 
 
-
 def repeat(item_name: str, count: int):
     """мультиплексор, возвращает словарь строк item_name, содержащий count элементов"""
     generated_list = [item_name] * count
@@ -154,4 +153,4 @@ Craft.add('Граната "хаттабка" на базе ВОГ-25', 'VOG-25 K
 # ----------------------- пищеблок
 
 Craft.add('Пачка сахара', 'Pack of sugar', [*repeat('Шоколад Алёнка', 2)], 1, 80)
-Craft.add('Чистая Энергия', 'Max energy',['ТарКола', 'Банка кофе Majaica', 'Бутылка воды 0.6'], 4, 204)
+Craft.add('Чистая Энергия', 'Max energy', ['ТарКола', 'Банка кофе Majaica', 'Бутылка воды 0.6'], 4, 204)
